@@ -1,31 +1,33 @@
-<form action="/cats" method="post">
+
+ <% edit = @cat.persisted? %>
+<form action="/cats<%= "/"+@cat.id.to_s if edit %>" method="post">
 
 
-  <% if @cat.persisted? %>
-    <form action="/users/123" method="POST">
+
+  <% if edit %>
+
       <input type="hidden" name="_method" value="PUT">
-    </form>
+
   <% end %>
 
   <p><label for="cat_name">Name</label>
-  <input name="cat[name]" id="cat_name"></p>
+  <input name="cat[name]" id="cat_name" value="<%= @cat.name if edit %>"></p>
 
   <p><label for="cat_color">Color</label>
   <select name="cat[color]" id="cat_color">
-    <option value="">Select Color</option>
     <% @cat.class::COLORS.each do |c| %>
-      <option value="<%= c %>"><%= c %></option>
+      <option value="<%= c %>" <%= "selected" if @cat.color == c %>><%= c %></option>
     <% end %>
   </select></p>
 
   <p><label for="cat_sex">Sex</label></p>
-  <p><input type="radio" name="cat[sex]" id="cat_sex" value="M" checked> Male</p>
-  <p><input type="radio" name="cat[sex]" id="cat_sex" value="F"> Female</p>
+  <p><input type="radio" name="cat[sex]" id="cat_sex" value="M" <%="checked" if @cat.sex == "M" %>> Male</p>
+  <p><input type="radio" name="cat[sex]" id="cat_sex" value="F" <%="checked" if @cat.sex == "F" %>> Female</p>
 
 
   <p><label for="cat_birthday">Birthday</label>
-  <input name="cat[birthday]" id="cat_birthday" type="date"></p>
+  <input name="cat[birthday]" id="cat_birthday" type="date" value="<%= @cat.birthday if edit%>"></p>
 
-  <input type="submit" value="Add new cat">
+  <input type="submit" value="<%= edit ? "Update" : "Create" %> Cat">
 
 </form>

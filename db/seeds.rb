@@ -5,7 +5,7 @@ cat1 = Cat.new({
   age: "3",
   color: "Yellow",
   sex: "M",
-  birthday: "2010-09-08"
+  birthday: "09/08/2010"
 }).save!
 
 cat2 = Cat.new({
@@ -13,5 +13,5 @@ cat2 = Cat.new({
   age: "7",
   color: "Black",
   sex: "M",
-  birthday: "2006-09-08"
+  birthday: "09/08/2006"
 }).save!
