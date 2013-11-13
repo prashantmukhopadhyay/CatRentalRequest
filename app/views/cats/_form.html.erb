@@ -1,0 +1,31 @@
+<form action="/cats" method="post">
+
+
+  <% if @cat.persisted? %>
+    <form action="/users/123" method="POST">
+      <input type="hidden" name="_method" value="PUT">
+    </form>
+  <% end %>
+
+  <p><label for="cat_name">Name</label>
+  <input name="cat[name]" id="cat_name"></p>
+
+  <p><label for="cat_color">Color</label>
+  <select name="cat[color]" id="cat_color">
+    <option value="">Select Color</option>
+    <% @cat.class::COLORS.each do |c| %>
+      <option value="<%= c %>"><%= c %></option>
+    <% end %>
+  </select></p>
+
+  <p><label for="cat_sex">Sex</label></p>
+  <p><input type="radio" name="cat[sex]" id="cat_sex" value="M" checked> Male</p>
+  <p><input type="radio" name="cat[sex]" id="cat_sex" value="F"> Female</p>
+
+
+  <p><label for="cat_birthday">Birthday</label>
+  <input name="cat[birthday]" id="cat_birthday" type="date"></p>
+
+  <input type="submit" value="Add new cat">
+
+</form>
