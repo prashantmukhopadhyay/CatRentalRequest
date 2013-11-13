@@ -14,3 +14,11 @@
     <td><%= @cat.birthday %></td>
   </tr>
 </table>
+
+<h2>Requests: </h2>
+
+<% if @cat.rental_requests.empty? %>
+  <p>No requests.</p>
+<% else %>
+  <%= render @cat.rental_requests %>
+<% end %>

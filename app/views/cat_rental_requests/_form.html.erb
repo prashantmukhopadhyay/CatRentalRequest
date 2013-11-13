@@ -1,0 +1,30 @@
+<% edit = @request.persisted? %>
+<form action="/cat_rental_requests<%= "/"+@request.id.to_s if edit %>" method="post">
+
+  <% if edit %>
+      <input type="hidden" name="_method" value="PUT">
+  <% end %>
+
+
+  <p><label for="request_cat_id">Cat: </label>
+  <select name="cat_rental_request[cat_id]" id="request_cat_id">
+    <% Cat.all.each do |c| %>
+      <option value="<%= c.id %>" <%= "selected" if @request.cat_id == c.id %>><%= c.name %></option>
+    <% end %>
+  </select></p>
+
+  <p>
+    <label for="request_cat_start_date">Start Date: </label>
+    <input type="date" name="cat_rental_request[start_date]" id="request_cat_start_date" value="<%= @request.start_date if edit %>">
+  </p>
+
+  <p>
+    <label for="request_cat_end_date">End Date: </label>
+    <input type="date" name="cat_rental_request[end_date]" id="request_cat_end_date" value="<%= @request.end_date if edit %>">
+  </p>
+
+
+
+  <input type="submit" value="<%= edit ? "Update" : "Create" %> Request">
+
+</form>

@@ -1,0 +1,20 @@
+
+
+<h3>Id# <%= cat_rental_request.id %></h3>
+
+<p>Cat: <%= cat_rental_request.cat.name %></p>
+<p>Start Date: <%= cat_rental_request.start_date %></p>
+<p>End Date: <%= cat_rental_request.end_date %></p>
+<p>Status: <%= cat_rental_request.status %>!</p>
+
+<% if cat_rental_request.status == "PENDING"%>
+<form action="/cat_rental_requests/<%= cat_rental_request.id %>/approve" method="POST">
+  <button type="submit" value="approve">Approve</button>
+</form>
+<form action="/cat_rental_requests/<%= cat_rental_request.id %>/deny" method="POST">
+  <button type="submit" value="deny">Deny</button>
+</form>
+
+<% end %>
+
+<hr>

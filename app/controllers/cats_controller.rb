@@ -30,6 +30,12 @@ class CatsController < ApplicationController
 
   def update
     @cat = Cat.find_by_id(params[:id])
+
+    if @cat.nil?
+      render json: "NO SUCH REQUEST"
+      return
+    end
+
     @cat.update_attributes(params[:cat])
     @cat.age = Time.now.to_date.year - @cat.birthday.year
 

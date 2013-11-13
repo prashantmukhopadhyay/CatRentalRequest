@@ -16,5 +16,13 @@ class Cat < ActiveRecord::Base
   validates :color, inclusion: { in: COLORS }
   validates :sex, inclusion: { in: ["F", "M"] }
 
+  has_many(
+    :rental_requests,
+    class_name: "CatRentalRequest",
+    foreign_key: :cat_id,
+    primary_key: :id,
+    dependent: :destroy
+  )
+
 
 end
